@@ -1,4 +1,5 @@
 from random import randint
+from time import sleep
 
 
 def facil():
@@ -80,13 +81,19 @@ def dificil():
                 dicas.append(texto_f[i][1])
             f = open('palavras.csv', 'w')
             for i in range(len(palavras)):
-                f.write(palavras[i]+';'+dicas[i])
+                f.write(f'{palavras[i]};{dicas[i]}')
+                if i != len(palavras)-1:
+                    f.write('\n')
             f.close()
             break
         elif retirar == 'N':
             break
         else:
             print("Erro!Digite S ou N")
+
+    for i in range(len(texto_f)):
+        palavras.append(texto_f[i][0])
+        dicas.append(texto_f[i][1])
 
     print(palavras)
     print(dicas)
@@ -145,12 +152,15 @@ def jogo():
                 print("Erro! Digite uma letra!")
             else:
                 print("Digite uma letra que ainda não foi digitada!")
+            sleep(1)
         print(letras)
         print(f"Vidas: {vidas}")
     if vidas == 0:
         print(f"Você perdeu, suas vidas acabaram!\nA palavra secreta era: {palavra_secreta}")
+        sleep(10)
     if vidas == -1:
         print("Você ganhou!")
+        sleep(10)
 
 
 def main():
